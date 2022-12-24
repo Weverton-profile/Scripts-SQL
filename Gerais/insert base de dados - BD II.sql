@@ -1,0 +1,17 @@
+INSERT INTO loja (Nome, Endereco) VALUES ('Loja Ficticia 1', 'Endereco Ficticio 1');
+INSERT INTO loja (Nome, Endereco) VALUES ('Loja Ficticia 2', 'Endereco Ficticio 2');
+INSERT INTO loja (Nome, Endereco) VALUES ('Loja Ficticia 3', 'Endereco Ficticio 3');
+INSERT INTO cliente (Nome, Idade, CPF, Endereco) VALUES ('Cliente Ficticio 1', 21, '123456789101', 'Endereco Fictcio Cliente 1');
+INSERT INTO cliente (Nome, Idade, CPF, Endereco) VALUES ('Cliente Ficticio 2', 22, '234567890111', 'Endereco Fictcio Cliente 2');
+INSERT INTO cliente (Nome, Idade, CPF, Endereco) VALUES ('Cliente Ficticio 3', 23, '345678901222', 'Endereco Fictcio Cliente 3');
+INSERT INTO cliente (Nome, Idade, CPF, Endereco) VALUES ('Cliente Ficticio 4', 24, '456789012333', 'Endereco Fictcio Cliente 4');
+INSERT INTO cliente (Nome, Idade, CPF, Endereco) VALUES ('Cliente Ficticio 5', 25, '567890123444', 'Endereco Fictcio Cliente 5');
+INSERT INTO produtos (Nome, Valor, Descricao, Loja_idLoja) VALUES ('Produto 1', 25.00, 'É o produto 1', 1);
+INSERT INTO produtos (Nome, Valor, Descricao, Loja_idLoja) VALUES ('Produto 2', 25.50, 'É o produto 2', 1);
+INSERT INTO produtos (Nome, Valor, Descricao, Loja_idLoja) VALUES ('Produto 3', 26.00, 'É o produto 3', 1);
+INSERT INTO produtos (Nome, Valor, Descricao, Loja_idLoja) VALUES ('Produto 4', 24.50, 'É o produto 4', 2);
+INSERT INTO produtos (Nome, Valor, Descricao, Loja_idLoja) VALUES ('Produto 5', 24.00, 'É o produto 5', 2);
+INSERT INTO produtos (Nome, Valor, Descricao, Loja_idLoja) VALUES ('Produto 6', 23.50, 'É o produto 6', 2);
+INSERT INTO produtos (Nome, Valor, Descricao, Loja_idLoja) VALUES ('Produto 7', 49.50, 'É o produto 7', 3);
+INSERT INTO produtos (Nome, Valor, Descricao, Loja_idLoja) VALUES ('Produto 8', 49.00, 'É o produto 8', 3);
+INSERT INTO produtos (Nome, Valor, Descricao, Loja_idLoja) VALUES ('Produto 9', 48.50, 'É o produto 9', 3);

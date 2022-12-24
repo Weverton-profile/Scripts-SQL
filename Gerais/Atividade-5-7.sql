@@ -1,0 +1,50 @@
+/*	Universidade Estadual do Piauí – UESPI
+	Centro de Tecnologia e Urbanismo – CTU
+	Bacharelado em Ciência da Computação
+	Disc. Banco de Dados I
+	Prof. Lianna Mara Castro Duarte
+	Aluno: Weverton Pereira Alves */
+    
+/* 5 */
+
+CREATE TABLE HR.employee_morto 
+    ( EMPLOYEE_ID   INT,
+     SALARY        INT
+    ) ;
+DELIMITER ;
+CREATE TRIGGER trg_update_func AFTER UPDATE
+ON EMPLOYEES 
+FOR EACH ROW
+BEGIN
+	IF OLD.SALARY <> NEW.SALARY THEN
+		INSERT INTO employee_morto(EMPLOYEE_ID, SALARY)  
+		values(OLD.EMPLOYEE_ID, OLD.SALARY);
+	END IF;
+END;
+DELIMITER ;
+
+/* 6 */
+
+DELIMITER ;
+
+CREATE PROCEDURE employee_name(FIRST_NAME VARCHAR(20))
+BEGIN
+	SELECT JOBS.JOB_TITLE, EMPLOYEES.SALARY, DEPARTMENTS.DEPARTMENT_NAME 
+	FROM EMPLOYEES 
+	left join JOBS on(EMPLOYEES.JOB_ID = JOBS.JOB_ID)
+	left join DEPARTMENTS on(EMPLOYEES.DEPARTMENT_ID = DEPARTMENTS.DEPARTMENT_ID);
+END
+
+DELIMITER ;
+
+/* 7 */
+
+DELIMITER ;
+
+CREATE FUNCTION function_salary(job_title VARCHAR(35))
+RETURNS INT DETERMINISTIC
+BEGIN
+ 		RETURN( FLOOR(EMPLOYEES.SALARY));
+END;
+
+DELIMITER ;

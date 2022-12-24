@@ -1,0 +1,68 @@
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+USE `mydb` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`Loja` (
+  `idLoja` INT NOT NULL AUTO_INCREMENT,
+  `Nome` VARCHAR(45) NOT NULL,
+  `Endereco` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idLoja`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`Produtos` (
+  `idProdutos` INT NOT NULL AUTO_INCREMENT,
+  `Nome` VARCHAR(45) NOT NULL,
+  `Valor` DECIMAL(10,2) NOT NULL,
+  `Descricao` VARCHAR(150) NOT NULL,
+  `Loja_idLoja` INT NOT NULL,
+  PRIMARY KEY (`idProdutos`),
+  INDEX `Loja_idLoja_idx` (`Loja_idLoja` ASC) VISIBLE,
+  CONSTRAINT `Loja_idLoja`
+    FOREIGN KEY (`Loja_idLoja`)
+    REFERENCES `mydb`.`Loja` (`idLoja`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`Cliente` (
+  `idCliente` INT NOT NULL AUTO_INCREMENT,
+  `Nome` VARCHAR(45) NOT NULL,
+  `Idade` INT NOT NULL,
+  `CPF` VARCHAR(12) NOT NULL,
+  `Endereco` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idCliente`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`Pedido` (
+  `idPedido` INT NOT NULL AUTO_INCREMENT,
+  `Quantidade` INT NOT NULL,
+  `Cliente_idCliente` INT NOT NULL,
+  `Produtos_idProdutos` INT NOT NULL,
+  PRIMARY KEY (`idPedido`),
+  INDEX `Produtos_idProdutos_idx` (`Produtos_idProdutos` ASC) VISIBLE,
+  INDEX `Cliente_idCliente_idx` (`Cliente_idCliente` ASC) VISIBLE,
+  CONSTRAINT `Produtos_idProdutos`
+    FOREIGN KEY (`Produtos_idProdutos`)
+    REFERENCES `mydb`.`Produtos` (`idProdutos`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `Cliente_idCliente`
+    FOREIGN KEY (`Cliente_idCliente`)
+    REFERENCES `mydb`.`Cliente` (`idCliente`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`Log` (
+  `idLog` INT NOT NULL AUTO_INCREMENT,
+  `Descricao` VARCHAR(200) NOT NULL,
+  PRIMARY KEY (`idLog`))
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
